@@ -2,8 +2,12 @@ package com.app.springdataexp.customer;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +21,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
+    private final PagedResourcesAssembler<Customer> pagedResourcesAssembler;
+    private final CustomerAssembler customerAssembler;
 
     public CustomerDetailDto getAllCustomer() {
         CustomerDetailDto customerDetailDto = new CustomerDetailDto();
@@ -43,5 +49,14 @@ public class CustomerService {
             modelMapper.map(customer, customerInfo);
         }
         return customerInfo;
+    }
+
+
+    public CustomerDetailDto getAllCustomer(Pageable pageable) {
+        CustomerDetailDto customerDetailDto = new CustomerDetailDto();
+        Page<Customer> customer = customerRepository.findAll(pageable);
+        PagedModel<CustomerInfo> collModel = pagedResourcesAssembler.toModel(customer, customerAssembler);
+        customerDetailDto.setCustomerInfoList(collModel);
+        return customerDetailDto;
     }
 }
