@@ -1,7 +1,6 @@
-package com.app.springdataexp.customer;
+package com.app.springdataexp.customerHATEOS;
 
 
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 

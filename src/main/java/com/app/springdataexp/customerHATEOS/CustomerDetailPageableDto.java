@@ -1,4 +1,4 @@
-package com.app.springdataexp.customer;
+package com.app.springdataexp.customerHATEOS;
 
 import lombok.Data;
 import org.springframework.hateoas.PagedModel;
