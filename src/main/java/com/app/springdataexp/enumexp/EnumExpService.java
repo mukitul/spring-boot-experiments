@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class EnumExpService {
@@ -29,5 +31,9 @@ public class EnumExpService {
         EnumData enumData = new EnumData();
         modelMapper.map(expModel, enumData);
         enumExpRepository.save(enumData);
+    }
+
+    public List<EnumData> getAll() {
+        return enumExpRepository.findAll();
     }
 }
