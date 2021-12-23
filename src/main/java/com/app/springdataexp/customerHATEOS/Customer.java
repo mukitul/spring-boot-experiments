@@ -10,6 +10,7 @@ import java.util.Date;
 @Table(name = "CUSTOMER")
 public class Customer {
     @Id
+    @GeneratedValue
     private Long id;
     @Column(name = "NAME")
     private String name;

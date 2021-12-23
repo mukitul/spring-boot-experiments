@@ -1,10 +1,16 @@
 package com.app.springdataexp.enumexp;
 
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class EnumExpService {
-    public void EnumExpMethod(ExpModel expModel) {
+    private final EnumExpRepository enumExpRepository;
+    private final ModelMapper modelMapper;
+
+    public void enumExpMethod(ExpModelRequest expModel) {
         if (StudentType.REGULAR.equals(expModel.getStudentType())) {
             System.out.println("StudentType.REGULAR");
         }
@@ -17,8 +23,11 @@ public class EnumExpService {
             System.out.println("CategoryType.CATEGORY_ONE");
         }
 
-        if (CategoryType.CATEGORY_ONE == expModel.getCategoryType()) {
-            System.out.println("CategoryType.CATEGORY_ONE");
+        if (CategoryType.CATEGORY_TWO == expModel.getCategoryType()) {
+            System.out.println("CategoryType.CATEGORY_TWO");
         }
+        EnumData enumData = new EnumData();
+        modelMapper.map(expModel, enumData);
+        enumExpRepository.save(enumData);
     }
 }

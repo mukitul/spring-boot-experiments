@@ -3,7 +3,7 @@ package com.app.springdataexp.enumexp;
 import lombok.Data;
 
 @Data
-public class ExpModel {
+public class ExpModelRequest {
     private CategoryType categoryType;
     private StudentType studentType;
 }
