@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class RedisController {
     private final RedisService redisService;
-    @GetMapping
-    public void testRedis(){
+
+    @GetMapping("/save")
+    public void testRedis() {
         redisService.saveInfo();
     }
 }
