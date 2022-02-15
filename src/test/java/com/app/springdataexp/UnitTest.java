@@ -2,7 +2,6 @@ package com.app.springdataexp;
 
 import com.app.springdataexp.cornexp.CornExpService;
 import com.app.springdataexp.csv.CSVParserService;
-import com.app.springdataexp.csv.CSVRecordDto;
 import com.app.springdataexp.enumexp.SpeStudentType;
 import com.app.springdataexp.enumexp.StudentType;
 import org.junit.Test;
@@ -10,8 +9,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -35,7 +32,6 @@ public class UnitTest {
 
     @Test
     public void csvParserTest() {
-        List<CSVRecordDto> recordDtoList = csvParserService.parseCSV();
-        System.out.println(recordDtoList);
+        csvParserService.parseCSV().forEach(System.out::println);
     }
 }

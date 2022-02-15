@@ -1,6 +1,6 @@
 ﻿MSISDN,User Name,User Designation,User DOB,User ID Type,User ID Value,Is Foreigner,Country Name of foreigner user
-8801233184070,Matthew Arnold,Junior Executive,14/3/1990,1,1278280791,NO,
-8801233184071,Robert Browning,Executive,15/3/1990,1,1278280792,NO,
+8801233184070,Matthew Arnold,Junior Executive,14/3/1990,,1278280791,,
+8801233184071,Robert Browning,Executive,,1,1278280792,NO,
 8801233184072,Alfred Tennyson,Senior Executive,16/3/1990,1,1278280793,NO,
 8801233184073,Langston Hughes,Manager,17/3/1990,1,1278280794,NO,
 8801233184074,Emily Dickinson,Senior Manager,18/3/1990,1,1278280795,NO,
