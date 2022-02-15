@@ -3,7 +3,8 @@ package com.app.springdataexp.enumexp;
 public enum StudentType {
     REGULAR("regular"),
     SPECIAL("special"),
-    PARTTIMER("part-timer");
+    PARTTIMER("part-timer"),
+    PARTTIMER2("part-timer2");
 
     private final String stydentType;
 

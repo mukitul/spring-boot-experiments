@@ -11,7 +11,7 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public List<Product> getAll(SearchQueryDto queryDto) {
-        productRepository.findAll();
-        return null;
+        List<Product> productList = productRepository.findAll();
+        return productList;
     }
 }
