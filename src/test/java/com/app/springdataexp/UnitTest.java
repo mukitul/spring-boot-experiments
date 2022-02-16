@@ -3,6 +3,7 @@ package com.app.springdataexp;
 import com.app.springdataexp.cornexp.CornExpService;
 import com.app.springdataexp.csv.CSVService;
 import com.app.springdataexp.csv.CSVRecordDto;
+import com.app.springdataexp.enumexp.CountryCode;
 import com.app.springdataexp.enumexp.SpeStudentType;
 import com.app.springdataexp.enumexp.StudentType;
 import org.junit.Test;
@@ -30,9 +31,11 @@ public class UnitTest {
 
     @Test
     public void enumLoopTest() {
-        for (StudentType studentType : StudentType.values()) {
-            System.out.println(SpeStudentType.values()[studentType.ordinal()]);
-        }
+//        for (StudentType studentType : StudentType.values()) {
+//            System.out.println(SpeStudentType.values()[studentType.ordinal()]);
+//        }
+
+        System.out.println(CountryCode.EIGHT_EIGHT_ZERO.getCountryCode());
     }
 
     @Test
