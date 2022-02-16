@@ -2,23 +2,21 @@ package com.app.springdataexp.csv;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
-public class CSVParserService {
+public class CSVService {
 
-    @Value("classpath:/files/FIRST_TIME_USER_INFO_UPDATE_REQUEST.csv") // Do not use field injection
+    @Value("classpath:/files/FIRST_TIME_USER_INFO_UPDATE_REQUEST.csv")
     private Resource csvFile;
 
     public List<CSVRecordDto> parseCSV() {
@@ -53,6 +51,37 @@ public class CSVParserService {
         }
         System.out.println("TOTAL_RECORD: " + recordDtoList.size());
         return recordDtoList;
+    }
+
+    public void generateCSV(List<CSVRecordDto> recordDtoList) {
+        try {
+            FileOutputStream fos = new FileOutputStream(UUID.randomUUID() + "_FTUIU.csv");
+            fos.write(generateFTUIURequestCSVtoByte(recordDtoList));
+            fos.flush();
+            fos.close();
+        } catch (Exception e) {
+            System.out.println("EXCEPTION_WHEN_WRITING_CSV: " + e.getMessage());
+        }
+        System.out.println("TOTAL_RECORD: " + recordDtoList.size());
+    }
+
+    private byte[] generateFTUIURequestCSVtoByte(List<CSVRecordDto> reqVsMsisdnList) throws IOException {
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        Writer out = new BufferedWriter(new OutputStreamWriter(outputStream));
+        CSVPrinter csvPrinter = new CSVPrinter(out, CSVFormat.EXCEL
+                .withHeader("MSISDN", "User Name", "User Designation",
+                        "User DOB", "User ID Type", "User ID Value",
+                        "Is Foreigner", "Country Name of foreigner user"));
+        reqVsMsisdnList.forEach(record -> {
+            try {
+                csvPrinter.printRecord(record.getMsisdn(), record.getName());
+            } catch (IOException e) {
+                System.out.println("EXCEPTION_WHEN_INSERTING_DATA: " + e.getMessage());
+            }
+        });
+        csvPrinter.flush();
+        csvPrinter.close();
+        return outputStream.toByteArray();
     }
 
     private String convertToBase64(Resource resource) {
