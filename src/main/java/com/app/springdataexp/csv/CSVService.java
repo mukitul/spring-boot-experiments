@@ -74,7 +74,9 @@ public class CSVService {
                         "Is Foreigner", "Country Name of foreigner user"));
         reqVsMsisdnList.forEach(record -> {
             try {
-                csvPrinter.printRecord(record.getMsisdn(), record.getName());
+                csvPrinter.printRecord(record.getMsisdn(), record.getName(),
+                        record.getDesignation(), record.getDob(), record.getIdType(),
+                        record.getIdValue(), record.getIsForeigner(), record.getCountry());
             } catch (IOException e) {
                 System.out.println("EXCEPTION_WHEN_INSERTING_DATA: " + e.getMessage());
             }
