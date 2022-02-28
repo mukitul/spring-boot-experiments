@@ -6,6 +6,7 @@ import com.app.springdataexp.csv.CSVRecordDto;
 import com.app.springdataexp.enumexp.CountryCode;
 import com.app.springdataexp.enumexp.SpeStudentType;
 import com.app.springdataexp.enumexp.StudentType;
+import com.app.springdataexp.listexp.StudentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class UnitTest {
     private CornExpService cornExpService;
     @Autowired
     private CSVService csvService;
+    @Autowired
+    private StudentService studentService;
 
     @Test
     public void cornExpTest() {
@@ -51,5 +54,10 @@ public class UnitTest {
                 new CSVRecordDto("8801833184125", "TEST_NAME_1", "TEST_DESG_1", new Date(), 1, "123456789", "NO", null),
                 new CSVRecordDto("8801833184125", "TEST_NAME_1", "TEST_DESG_1", new Date(), 1, "123456789", "NO", null));
         csvService.generateCSV(recordDtoList);
+    }
+
+    @Test
+    public void getAllStdTest() {
+        studentService.showAllStudent();
     }
 }
