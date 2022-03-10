@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
 @Service
@@ -24,10 +25,12 @@ public class StudentService {
 
     public void showAllStudent() {
         List<StudentDto> stdList = dataService.getAllStudent();
+        AtomicInteger count=new AtomicInteger(1);
         stdList.forEach(std -> {
-            if(null==std) return;
-            System.out.println(std.getId());
-            std.setName("Mr. x");
+            System.out.println(count.incrementAndGet());
+//            if(null==std) return;
+//            System.out.println(std.getId());
+//            std.setName("Mr. x");
         });
 
         System.out.println(stdList);
