@@ -3,6 +3,7 @@ package com.app.springdataexp;
 import com.app.springdataexp.cornexp.CornExpService;
 import com.app.springdataexp.csv.CSVRecordDto;
 import com.app.springdataexp.csv.CSVService;
+import com.app.springdataexp.dateexp.DateService;
 import com.app.springdataexp.enumexp.CountryCode;
 import com.app.springdataexp.listexp.StudentService;
 import org.junit.Test;
@@ -11,11 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +25,8 @@ public class UnitTest {
     private CSVService csvService;
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private DateService dateService;
 
     @Test
     public void cornExpTest() {
@@ -66,17 +64,6 @@ public class UnitTest {
 
     @Test
     public void dateTest() {
-        String sDate1 = "31/12/1998";
-        try {
-            Date dob = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-            LocalDate dobLD = dob.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-            LocalDate ld = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-            Period difference = Period.between(dobLD, ld);
-            System.out.println(difference.getYears());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        dateService.calculateDifferenceBetweenTwoDates();
     }
 }

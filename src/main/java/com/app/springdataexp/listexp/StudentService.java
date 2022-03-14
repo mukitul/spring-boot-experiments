@@ -25,12 +25,20 @@ public class StudentService {
 
     public void showAllStudent() {
         List<StudentDto> stdList = dataService.getAllStudent();
+        stdList.forEach(std -> {
+            if (null == std) return;
+            System.out.println(std.getId());
+            std.setName("Mr. x");
+        });
+
+        System.out.println(stdList);
+    }
+
+    public void countInForEach() {
+        List<StudentDto> stdList = dataService.getAllStudent();
         AtomicInteger count=new AtomicInteger(1);
         stdList.forEach(std -> {
             System.out.println(count.incrementAndGet());
-//            if(null==std) return;
-//            System.out.println(std.getId());
-//            std.setName("Mr. x");
         });
 
         System.out.println(stdList);
