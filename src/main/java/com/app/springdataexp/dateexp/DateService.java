@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Service
 public class DateService {
-    public void calculateDifferenceBetweenTwoDates() {
+    public void calculateDifferenceBetweenGivenDateAndCurrentDate() {
         String sDate1 = "31/12/1998";
         try {
             Date startDate = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);

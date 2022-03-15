@@ -64,6 +64,6 @@ public class UnitTest {
 
     @Test
     public void dateTest() {
-        dateService.calculateDifferenceBetweenTwoDates();
+        dateService.calculateDifferenceBetweenGivenDateAndCurrentDate();
     }
 }
