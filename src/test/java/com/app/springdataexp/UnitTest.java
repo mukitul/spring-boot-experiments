@@ -4,7 +4,7 @@ import com.app.springdataexp.cornexp.CornExpService;
 import com.app.springdataexp.csv.CSVRecordDto;
 import com.app.springdataexp.csv.CSVService;
 import com.app.springdataexp.dateexp.DateService;
-import com.app.springdataexp.enumexp.CountryCode;
+import com.app.springdataexp.enumexp.EnumExpService;
 import com.app.springdataexp.listexp.StudentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +28,9 @@ public class UnitTest {
     @Autowired
     private DateService dateService;
 
+    @Autowired
+    private EnumExpService enumExpService;
+
     @Test
     public void cornExpTest() {
         cornExpService.cornExp();
@@ -39,7 +42,9 @@ public class UnitTest {
 //            System.out.println(SpeStudentType.values()[studentType.ordinal()]);
 //        }
 
-        System.out.println(CountryCode.EIGHT_EIGHT_ZERO.getCountryCode());
+        enumExpService.showData();
+
+//        System.out.println(CountryCode.EIGHT_EIGHT_ZERO.getCountryCode());
     }
 
     @Test
