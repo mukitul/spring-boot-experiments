@@ -64,7 +64,8 @@ public class UnitTest {
 
     @Test
     public void getAllStdTest() {
-        studentService.showAllStudent();
+        //studentService.showAllStudent();
+        studentService.getStudentListDto();
     }
 
     @Test

@@ -12,7 +12,6 @@ import java.util.stream.IntStream;
 public class StudentService {
     private final DataService dataService;
 
-
     public StudentListDto getAllStudent() {
         StudentListDto std = new StudentListDto();
         IntStream.range(1, 3).forEach(i -> {
@@ -36,12 +35,19 @@ public class StudentService {
 
     public void countInForEach() {
         List<StudentDto> stdList = dataService.getAllStudent();
-        AtomicInteger count=new AtomicInteger(1);
+        AtomicInteger count = new AtomicInteger(1);
         stdList.forEach(std -> {
             System.out.println(count.incrementAndGet());
         });
 
         System.out.println(stdList);
+    }
+
+    public StudentListDto getStudentListDto() {
+        StudentListDto dto = new StudentListDto();
+        List<StudentDto> stdList = dataService.getAllStudent();
+        dto.getStudentDtoList().addAll(stdList);
+        return dto;
     }
 
 }
