@@ -70,7 +70,9 @@ public class UnitTest {
 
     @Test
     public void dateTest() {
-        dateService.calculateDifferenceBetweenGivenDateAndCurrentDate();
+        //dateService.getEpochFromUtilDate();
+        dateService.getUtilDateFromEpoch();
+        //dateService.calculateDifferenceBetweenGivenDateAndCurrentDate();
         //dateService.convertLocalDateToUtilDate();
     }
 }

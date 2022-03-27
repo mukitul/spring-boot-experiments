@@ -2,13 +2,9 @@ package com.app.springdataexp.dateexp;
 
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.ZoneId;
+import java.time.*;
 import java.util.Date;
 
 @Service
@@ -35,7 +31,7 @@ public class DateService {
         System.out.println("Util Date: " + utilDate);
     }
 
-    public void formatDate(){
+    public void formatDate() {
         /*
             Pattern	          Example
             dd-MM-yy   ----------------------> 31-01-12
@@ -47,5 +43,31 @@ public class DateService {
             yyyy-MM-dd HH:mm:ss.SSSZ --------> 2012-01-31 23:59:59.999+0100
             EEEEE MMMMM yyyy HH:mm:ss.SSSZ --> Saturday November 2012 10:45:42.720+0100
          */
+    }
+
+    public void getEpochFromUtilDate() {
+        String sDate1 = "31/12/1998";
+        long epoch = 0;
+        try {
+            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+            epoch = date.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println("EPOCH: " + epoch);
+    }
+
+
+    public void getUtilDateFromEpoch() {
+        Date utilDate = null;
+        try {
+            long epoch = 332151317000L;
+            //long epoch = 586344244000L;
+            LocalDateTime ldt = Instant.ofEpochMilli(epoch).atZone(ZoneId.systemDefault()).toLocalDateTime();
+            utilDate = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("UTIL_DATE: " + utilDate);
     }
 }
