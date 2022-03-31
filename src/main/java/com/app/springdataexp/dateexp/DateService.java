@@ -5,12 +5,13 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 @Service
 public class DateService {
     public void calculateDifferenceBetweenGivenDateAndCurrentDate() {
-        String sDate1 = "31/12/1998";
+        String sDate1 = "11/07/1960";
         try {
             Date startDate = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
             LocalDate localStartDate = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -69,5 +70,10 @@ public class DateService {
             e.printStackTrace();
         }
         System.out.println("UTIL_DATE: " + utilDate);
+    }
+
+    public void subtractFromCurrentDate(){
+        Date now = Date.from(Instant.now().minus(10, ChronoUnit.DAYS));
+        System.out.println(now);
     }
 }
