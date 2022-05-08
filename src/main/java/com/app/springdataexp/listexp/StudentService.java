@@ -3,8 +3,12 @@ package com.app.springdataexp.listexp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Service
@@ -48,6 +52,28 @@ public class StudentService {
         List<StudentDto> stdList = dataService.getAllStudent();
         dto.getStudentDtoList().addAll(stdList);
         return dto;
+    }
+
+    public List<StudentDto> mapOneListToAnother() {
+        List<StudentDto> stdList = new ArrayList<>();
+        try {
+            List<StudentDetailDto> stdDetailList = dataService.getAllStudentDetail();
+            stdList = stdDetailList.stream()
+                    .filter(Objects::nonNull)
+                    .map(stdDetail -> {
+                        StudentDto studentDto = new StudentDto();
+                        studentDto.setName(stdDetail.getName());
+                        studentDto.setId(stdDetail.getId());
+                        return studentDto;
+                    })
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.out.println("STDLIST | EXCEPTION: " + e.getMessage());
+            System.out.println("STDLIST | EXCEPTION: " + stdList);
+            stdList = Collections.emptyList();
+        }
+        System.out.println("STDLIST: " + stdList);
+        return stdList;
     }
 
 }

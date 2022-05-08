@@ -40,6 +40,6 @@ public class EnumExpService {
     public void showData() {
         EnumData enumData = new EnumData();
         enumData.setStudentType(StudentType.REGULAR);
-        System.out.println(enumData.getStudentType());
+        System.out.println(enumData.getStudentType().toString());
     }
 }

@@ -28,4 +28,26 @@ public class DataService {
         stdList.add(studentDto2);
         return stdList;
     }
+
+    public List<StudentDetailDto> getAllStudentDetail() {
+        StudentDetailDto studentDto1 = new StudentDetailDto();
+        studentDto1.setId(1);
+        studentDto1.setName("Rassel");
+
+        StudentDetailDto studentDto2 = new StudentDetailDto();
+        studentDto2.setId(2);
+        studentDto2.setName("Haque");
+
+        StudentDetailDto studentDto3 = new StudentDetailDto();
+        studentDto3.setId(3);
+        studentDto3.setName("Raihan");
+
+        List<StudentDetailDto> stdList = new ArrayList<>();
+        stdList.add(studentDto1);
+        stdList.add(studentDto2);
+        stdList.add(null);
+        stdList.add(studentDto3);
+        return stdList;
+    }
+
 }

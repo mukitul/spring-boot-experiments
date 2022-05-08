@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.Date;
 
 @Service
@@ -41,9 +42,20 @@ public class DateService {
             yyyy-MM-dd ----------------------> 2012-01-31
             yyyy-MM-dd HH:mm:ss -------------> 2012-01-31 23:59:59
             yyyy-MM-dd HH:mm:ss.SSS ---------> 2012-01-31 23:59:59.999
+            24-APR-22 01.30.14.672000000 PM
             yyyy-MM-dd HH:mm:ss.SSSZ --------> 2012-01-31 23:59:59.999+0100
             EEEEE MMMMM yyyy HH:mm:ss.SSSZ --> Saturday November 2012 10:45:42.720+0100
          */
+    }
+
+    public Date stringDateToUtilDate(String strDate, String format) {
+        Date date = null;
+        try {
+            date = new SimpleDateFormat(format).parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 
     public void getEpochFromUtilDate() {
@@ -72,8 +84,26 @@ public class DateService {
         System.out.println("UTIL_DATE: " + utilDate);
     }
 
-    public void subtractFromCurrentDate(){
+    public void subtractFromCurrentDate() {
         Date now = Date.from(Instant.now().minus(10, ChronoUnit.DAYS));
         System.out.println(now);
+    }
+
+    public void dateExp() {
+        Calendar currentCalender = Calendar.getInstance();
+        int thresholdMinutesToProcess = 3;
+        currentCalender.add(Calendar.MINUTE, thresholdMinutesToProcess);
+        Date currentTime = new Date(currentCalender.getTimeInMillis());
+
+
+        Calendar autoAcceptCalender = Calendar.getInstance();
+        Date portingTime = stringDateToUtilDate("2022-04-24", "yyyy-MM-dd");
+        autoAcceptCalender.setTime(portingTime);
+        autoAcceptCalender.add(Calendar.MINUTE, 25);
+        Date autoAcceptTime = new Date(autoAcceptCalender.getTimeInMillis());
+
+        boolean isTimedOut = currentTime.after(autoAcceptTime);
+        System.out.println(isTimedOut);
+
     }
 }

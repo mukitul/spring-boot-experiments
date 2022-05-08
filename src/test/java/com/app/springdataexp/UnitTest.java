@@ -6,6 +6,8 @@ import com.app.springdataexp.csv.CSVService;
 import com.app.springdataexp.dateexp.DateService;
 import com.app.springdataexp.enumexp.EnumExpService;
 import com.app.springdataexp.listexp.StudentService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class UnitTest {
+
+    private static final Logger logger = LogManager.getLogger(UnitTest.class);
+
     @Autowired
     private CornExpService cornExpService;
     @Autowired
@@ -65,7 +70,8 @@ public class UnitTest {
     @Test
     public void getAllStdTest() {
         //studentService.showAllStudent();
-        studentService.getStudentListDto();
+        //studentService.getStudentListDto();
+        studentService.mapOneListToAnother();
     }
 
     @Test
@@ -74,6 +80,39 @@ public class UnitTest {
         //dateService.getUtilDateFromEpoch();
         //dateService.calculateDifferenceBetweenGivenDateAndCurrentDate();
         //dateService.convertLocalDateToUtilDate();
-        dateService.subtractFromCurrentDate();
+        //dateService.subtractFromCurrentDate();
+        dateService.dateExp();
     }
+
+    @Test
+    public void logTest() {
+        bllError(logger, "EXT_API_CALL", "IS_MSISDN_ALREADY_EXISTS", "null");
+        bllRequestInfo(logger, "EXT_API_CALL", "IS_MSISDN_ALREADY_EXISTS", "request-object", null);
+    }
+
+    public static void bllError(Logger logger, String logType, String logPurpose, String errorDetails) {
+        try {
+            logger.error(String.format("BLL_ERROR: %s | %s | %s", logType, logPurpose, errorDetails));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void bllRequestInfo(Logger logger, String logType, String logPurpose, String requestObject, String errorDetails) {
+        try {
+            logger.error(String.format("BLL_REQUEST: %s | %s | REQUEST_OBJECT: %s | %s", logType, logPurpose, requestObject, errorDetails));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void bllResponseInfo(Logger logger, String logType, String logPurpose, String responseObject, String errorDetails) {
+        try {
+            logger.error(String.format("BLL_RESPONSE: %s | %s | RESPONSE_OBJECT: %s | %s", logType, logPurpose, responseObject, errorDetails));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
