@@ -56,11 +56,12 @@ public class StreamExpService {
         );
     }
 
-    public void mapTest1() {
+    public void getElementLengthInList() {
         List<String> words = Arrays.asList("Java8", "Lambdas", "In", "Action");
         List<Integer> wordLengths = words.stream()
-                .map(String::length)
-                .collect(Collectors.toList());
+                .map(w->w.length())
+                .collect(Collectors.toList())
+                .stream().sorted().collect(Collectors.toList());
         System.out.println(wordLengths);
     }
 
@@ -70,7 +71,7 @@ public class StreamExpService {
     public void getChildByParentId(int parentId) {
         List<Integer> childIdList = mappings.stream()
                 .filter(map -> parentId == map.getParentId())
-                .map(mappings -> mappings.getChildId())
+                .map(ParentChildMapping::getChildId)
                 .collect(Collectors.toList());
 
         List<ChildData> childrenList = children.stream()

@@ -6,6 +6,7 @@ import com.app.springdataexp.csv.CSVService;
 import com.app.springdataexp.dateexp.DateService;
 import com.app.springdataexp.enumexp.EnumExpService;
 import com.app.springdataexp.listexp.StudentService;
+import com.app.springdataexp.streamsexp.StreamExpService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
@@ -32,7 +33,8 @@ public class UnitTest {
     private StudentService studentService;
     @Autowired
     private DateService dateService;
-
+    @Autowired
+    private StreamExpService streamExpService;
     @Autowired
     private EnumExpService enumExpService;
 
@@ -46,9 +48,7 @@ public class UnitTest {
 //        for (StudentType studentType : StudentType.values()) {
 //            System.out.println(SpeStudentType.values()[studentType.ordinal()]);
 //        }
-
         enumExpService.showData();
-
 //        System.out.println(CountryCode.EIGHT_EIGHT_ZERO.getCountryCode());
     }
 
@@ -82,6 +82,12 @@ public class UnitTest {
         //dateService.convertLocalDateToUtilDate();
         //dateService.subtractFromCurrentDate();
         dateService.dateExp();
+    }
+
+    @Test
+    public void streamTest() {
+        //streamExpService.getChildByParentId(6);
+        streamExpService.getElementLengthInList();
     }
 
     @Test
