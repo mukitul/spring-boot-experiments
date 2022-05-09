@@ -29,12 +29,12 @@ public class CacheService {
         productRepository.saveAll(productList);
     }
 
-    @Cacheable
+    @Cacheable(cacheNames = "allProductCache")
     public List<Product> getAllProduct() {
         return productRepository.findAll();
     }
 
-    @Cacheable
+    @Cacheable(value = "products")
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
