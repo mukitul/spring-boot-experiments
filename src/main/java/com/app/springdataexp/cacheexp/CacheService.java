@@ -14,19 +14,19 @@ import java.util.List;
 @AllArgsConstructor
 public class CacheService {
     private final ProductRepository productRepository;
-    private final List<Product> productList = new ArrayList<>();
 
     @PostConstruct
     private void populateData() {
-        productRepository.deleteAll();
-
-        for (int i = 0; i < 10000; i++) {
-            Product product = new Product();
-            product.setProductName("PD_" + i);
-            product.setPrice(100.0);
-            productList.add(product);
+        final List<Product> productList = new ArrayList<>();
+        if (productRepository.countRecord() <= 0) {
+            for (int i = 0; i < 10000; i++) {
+                Product product = new Product();
+                product.setProductName("PD_" + i);
+                product.setPrice(100.0);
+                productList.add(product);
+            }
+            productRepository.saveAll(productList);
         }
-        productRepository.saveAll(productList);
     }
 
     @Cacheable(cacheNames = "allProductCache")
