@@ -76,12 +76,12 @@ public class UnitTest {
 
     @Test
     public void dateTest() {
-        //dateService.getEpochFromUtilDate();
+        dateService.getEpochFromUtilDate();
         //dateService.getUtilDateFromEpoch();
         //dateService.calculateDifferenceBetweenGivenDateAndCurrentDate();
         //dateService.convertLocalDateToUtilDate();
         //dateService.subtractFromCurrentDate();
-        dateService.dateExp();
+        //dateService.dateExp();
     }
 
     @Test
