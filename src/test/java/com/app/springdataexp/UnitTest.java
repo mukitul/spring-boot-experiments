@@ -5,6 +5,7 @@ import com.app.springdataexp.csv.CSVRecordDto;
 import com.app.springdataexp.csv.CSVService;
 import com.app.springdataexp.dateexp.DateService;
 import com.app.springdataexp.enumexp.EnumExpService;
+import com.app.springdataexp.excel.ExcelService;
 import com.app.springdataexp.listexp.StudentService;
 import com.app.springdataexp.streamsexp.StreamExpService;
 import org.apache.logging.log4j.LogManager;
@@ -37,6 +38,8 @@ public class UnitTest {
     private StreamExpService streamExpService;
     @Autowired
     private EnumExpService enumExpService;
+    @Autowired
+    private ExcelService excelService;
 
     @Test
     public void cornExpTest() {
@@ -65,6 +68,11 @@ public class UnitTest {
                 new CSVRecordDto("8801833184125", "TEST_NAME_1", "TEST_DESG_1", new Date(), 1, "123456789", "NO", null),
                 new CSVRecordDto("8801833184125", "TEST_NAME_1", "TEST_DESG_1", new Date(), 1, "123456789", "NO", null));
         csvService.generateCSV(recordDtoList);
+    }
+
+    @Test
+    public void excelParserTest() {
+        excelService.parseExcel().forEach(System.out::println);
     }
 
     @Test
