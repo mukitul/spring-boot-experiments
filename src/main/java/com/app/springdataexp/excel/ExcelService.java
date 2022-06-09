@@ -1,9 +1,6 @@
 package com.app.springdataexp.excel;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -45,6 +42,9 @@ public class ExcelService {
                 int iterationCount = 5;
                 while (cellIterator.hasNext() && iterationCount >= 0) {
                     Cell cell = cellIterator.next();
+                    if (cell.getCellTypeEnum() == CellType.BLANK) {
+                        throw new Exception("blank cell");
+                    }
                     if (cell.getColumnIndex() == 0) {
                         record.setUsername(NumberToTextConverter.toText(cell.getNumericCellValue()));
                     } else if (cell.getColumnIndex() == 1) {
@@ -61,7 +61,7 @@ public class ExcelService {
                 recordList.add(record);
             }
         } catch (Exception e) {
-            System.out.println("EXCEPTION_WHEN_PARSING_CSV: " + e.getMessage());
+            System.out.println("EXCEPTION_WHEN_PARSING_EXCEL: " + e.getMessage());
         }
         System.out.println("TOTAL_RECORD: " + recordList.size());
         return recordList;
