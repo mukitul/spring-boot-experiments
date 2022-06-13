@@ -7,6 +7,7 @@ import com.app.springdataexp.dateexp.DateService;
 import com.app.springdataexp.enumexp.EnumExpService;
 import com.app.springdataexp.excel.ExcelService;
 import com.app.springdataexp.listexp.StudentService;
+import com.app.springdataexp.specexp.ProductService;
 import com.app.springdataexp.streamsexp.StreamExpService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,6 +41,8 @@ public class UnitTest {
     private EnumExpService enumExpService;
     @Autowired
     private ExcelService excelService;
+    @Autowired
+    private ProductService productService;
 
     @Test
     public void cornExpTest() {
