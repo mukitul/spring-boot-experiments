@@ -3,10 +3,7 @@ package com.app.springdataexp.listexp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -74,6 +71,15 @@ public class StudentService {
         }
         System.out.println("STDLIST: " + stdList);
         return stdList;
+    }
+
+    public void convertListToArray() {
+        List<StudentDetailDto> stdDetailList = dataService.getAllStudentDetail();
+        StudentDetailDto[] studentDetailArray = stdDetailList.toArray(new StudentDetailDto[0]);
+        System.out.println(Arrays.toString(studentDetailArray));
+        for (StudentDetailDto studentDetailDto : studentDetailArray) {
+            System.out.println(studentDetailDto);
+        }
     }
 
 }

@@ -82,7 +82,8 @@ public class UnitTest {
     public void getAllStdTest() {
         //studentService.showAllStudent();
         //studentService.getStudentListDto();
-        studentService.mapOneListToAnother();
+        //studentService.mapOneListToAnother();
+        studentService.convertListToArray();
     }
 
     @Test
