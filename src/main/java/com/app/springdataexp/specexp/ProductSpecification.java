@@ -26,13 +26,13 @@ public class ProductSpecification implements Specification<Product> {
         final List<Predicate> predicateList = new ArrayList<>();
         for (SearchQueryDto queryDto : queryDtoList) {
             if (queryDto.getProductName() != null) {
-                predicateList.add(criteriaBuilder.equal(root.get("productName"), queryDto.getProductName()));
+                predicateList.add(criteriaBuilder.equal(root.get(Product_.PRODUCT_NAME), queryDto.getProductName()));
             }
             if (queryDto.getPrice() != null) {
-                predicateList.add(criteriaBuilder.equal(root.get("price"), queryDto.getPrice()));
+                predicateList.add(criteriaBuilder.equal(root.get(Product_.PRICE), queryDto.getPrice()));
             }
             if (queryDto.getProductType() != null) {
-                predicateList.add(criteriaBuilder.equal(root.get("productType"), queryDto.getProductType()));
+                predicateList.add(criteriaBuilder.equal(root.get(Product_.PRODUCT_TYPE), queryDto.getProductType()));
             }
         }
         return criteriaBuilder.and(predicateList.toArray(new Predicate[0]));

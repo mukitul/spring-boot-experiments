@@ -99,6 +99,12 @@
             <artifactId>wsdl4j</artifactId>
         </dependency>
 
+        <!--For generating metamodel classes from entity class-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>5.3.7.Final</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
