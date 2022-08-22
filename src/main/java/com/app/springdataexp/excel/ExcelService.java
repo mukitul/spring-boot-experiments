@@ -18,7 +18,7 @@ import java.util.List;
 
 @Service
 public class ExcelService {
-    @Value("classpath:/files/SVS_USER_CREATION_64BIT_RETAILER.xlsm")
+    @Value("classpath:/files/test-file-excel.xlsm")
     private Resource excelFile;
 
     public List<ExcelRecord> parseExcel() {
@@ -48,13 +48,13 @@ public class ExcelService {
                     if (cell.getColumnIndex() == 0) {
                         record.setUsername(NumberToTextConverter.toText(cell.getNumericCellValue()));
                     } else if (cell.getColumnIndex() == 1) {
-                        record.setRetailerCodeRobi(cell.getStringCellValue());
+                        record.setRcr(cell.getStringCellValue());
                     } else if (cell.getColumnIndex() == 2) {
-                        record.setRetailerMsisdnRobi(NumberToTextConverter.toText(cell.getNumericCellValue()));
+                        record.setRmr(NumberToTextConverter.toText(cell.getNumericCellValue()));
                     } else if (cell.getColumnIndex() == 3) {
-                        record.setRetailerCodeAirtel(cell.getStringCellValue());
+                        record.setRca(cell.getStringCellValue());
                     } else if (cell.getColumnIndex() == 4) {
-                        record.setRetailerMsisdnAirtel(NumberToTextConverter.toText(cell.getNumericCellValue()));
+                        record.setRma(NumberToTextConverter.toText(cell.getNumericCellValue()));
                     }
                     iterationCount--;
                 }

@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class ExcelRecord {
     private String username;
-    private String retailerCodeRobi;
-    private String retailerMsisdnRobi;
-    private String retailerCodeAirtel;
-    private String retailerMsisdnAirtel;
+    private String rcr;
+    private String rmr;
+    private String rca;
+    private String rma;
 }

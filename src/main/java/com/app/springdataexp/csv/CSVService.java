@@ -13,7 +13,7 @@ import java.util.*;
 @Service
 public class CSVService {
 
-    @Value("classpath:/files/7460c550-1742-4024-808d-976de8cf8eb2_FTUIU.csv")
+    @Value("classpath:/files/test-file-csv.csv")
     private Resource csvFile;
 
     public List<CSVRecordDto> parseCSV() {
@@ -54,7 +54,7 @@ public class CSVService {
     public void generateCSV(List<CSVRecordDto> recordDtoList) {
         try {
             byte[] decoded = Base64.getDecoder().decode(generateFTUIURequestCSVtoBase64(recordDtoList));
-            FileOutputStream fos = new FileOutputStream(UUID.randomUUID() + "_FTUIU.csv");
+            FileOutputStream fos = new FileOutputStream(UUID.randomUUID() + "_test-file-csv.csv");
             fos.write(decoded);
             fos.flush();
             fos.close();
