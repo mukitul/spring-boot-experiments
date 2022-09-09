@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/data-exp?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/expDB?createDatabaseIfNotExist=true
     username: root
-    password:
+    password: root
     tomcat:
       max-active: 20
       max-idle: 5
@@ -17,10 +17,19 @@ spring:
       remove-abandoned-timeout: 60
     hikari:
       connection-timeout: 30000
-      maximum-pool-size: 5
-      minimum-idle: 2
-      max-lifetime: 10000
-      idle-timeout: 8000
+      maximum-pool-size: 30
+      minimum-idle: 5
+      max-lifetime: 600000
+      #max-lifetime should be several seconds shorter than any database or infrastructure imposed connection time limit
+      idle-timeout: 10000
+      #idle-timeout setting only applies when minimum-idle is defined to be less than maximum-pool-size
+      #a value of 0 means that idle connections are never removed from the pool
+      #a connection will never be retired as idle before given timeout
+      #maximum amount of time that a connection is allowed to sit idle in the pool
+      leak-detection-threshold: 10000
+      #amount of time that a connection can be out of the pool before a message is logged indicating a possible connection leak
+      #value of 0 means leak detection is disabled
+      #lowest acceptable value for enabling leak detection is 2000 (2 seconds)
   jpa:
     show-sql: false
     generate-ddl: false
@@ -39,10 +48,6 @@ logging:
     root: INFO
     org.hibernate.SQL: ERROR
     org.hibernate.type.descriptor.sql.BasicBinder: ERROR
-    org.apache.kafka.clients.producer: WARN
-    org.apache.kafka.clients.consumer: WARN
-    com.zaxxer.hikari.pool.HikariPool: DEBUG
-    com.zaxxer.hikari.pool: DEBUG
     com.zaxxer.hikari.pool.*: DEBUG
     com.zaxxer.hikari.HikariConfig: OFF
     o.h.r.j.i.ResourceRegistryStandardImpl: OFF

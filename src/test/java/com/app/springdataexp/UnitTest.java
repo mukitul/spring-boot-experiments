@@ -3,6 +3,7 @@ package com.app.springdataexp;
 import com.app.springdataexp.cornexp.CornExpService;
 import com.app.springdataexp.csv.CSVRecordDto;
 import com.app.springdataexp.csv.CSVService;
+import com.app.springdataexp.customerHATEOS.CustomerService;
 import com.app.springdataexp.dateexp.DateService;
 import com.app.springdataexp.enumexp.EnumExpService;
 import com.app.springdataexp.excel.ExcelService;
@@ -43,6 +44,18 @@ public class UnitTest {
     private ExcelService excelService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CustomerService customerService;
+
+    @Test
+    public void insertTest() {
+        customerService.insertCustomer();
+    }
+
+    @Test
+    public void randomPickTest() {
+        customerService.pickRandomData();
+    }
 
     @Test
     public void cornExpTest() {

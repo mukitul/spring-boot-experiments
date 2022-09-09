@@ -11,15 +11,13 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class TestSchedulerService {
     private final static Logger logger = LogManager.getLogger(TestSchedulerService.class);
-    private final String SCHEDULER_NAME = "TEST_SCHEDULER";
-    private final int ITERATION = 100000;
     private final CustomerService customerService;
     private final TestThreadService testThreadService;
 
-    @Scheduled(initialDelay = 1000L, fixedDelay = 200L)
+    @Scheduled(initialDelay = 1000L, fixedDelay = 3000L)
     public void runScheduler() {
 //        logger.info("==========================> BEGIN WORK");
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 118; i++) {
 //            logger.info("==========================> testThreadService.runThreadOne() START");
             testThreadService.runThreadOne();
 //            logger.info("==========================> testThreadService.runThreadOne() END");

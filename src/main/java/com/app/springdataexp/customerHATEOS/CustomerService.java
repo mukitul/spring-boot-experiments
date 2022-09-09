@@ -13,7 +13,9 @@ import org.springframework.hateoas.PagedModel;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
@@ -67,7 +69,24 @@ public class CustomerService {
         return customerInfo;
     }
 
+    public void insertCustomer() {
+        Random random = new Random();
+        for (int i = 0; i < 5000000; i++) {
+            try {
+                Customer customer = new Customer();
+                customer.setName("TEST_NAME" + random.nextInt(5000001) + 1);
+                customer.setDob(new Date());
+                customerRepository.save(customer);
+                //logger.info("==========================> customerRepository.save END");
+            } catch (Exception e) {
+                logger.info(" EXCEPTION: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void doDBTask() {
+        Random random = new Random();
         try {
 //            logger.info("==========================> customerRepository.findById");
             Customer customer = customerRepository.findById(1L).get();
@@ -81,6 +100,21 @@ public class CustomerService {
 //            System.out.println(Thread.currentThread().getName() + " SAVED");
         } catch (Exception e) {
             logger.info(Thread.currentThread().getName() + " EXCEPTION: " + e.getMessage());
+        }
+    }
+
+    public void pickRandomData() {
+        //1731271
+        //24877
+        Random random = new Random();
+        for (int i = 0; i < 1706395; i++) {
+            try {
+                Long customerId = (long) (random.nextInt((1731271 - 24877) + 1) + 24877);
+                Customer customer = customerRepository.findById(customerId).get();
+            } catch (Exception e) {
+                logger.info(" EXCEPTION: " + e.getMessage());
+                //e.printStackTrace();
+            }
         }
     }
 }

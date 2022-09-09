@@ -28,7 +28,7 @@ public class TestThreadService {
 
     public void runThreadOne() {
         runService(() -> {
-            customerService.doDBTask();
+            customerService.pickRandomData();
         });
     }
 
