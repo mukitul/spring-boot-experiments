@@ -59,7 +59,7 @@ public class DateService {
     }
 
     public void getEpochFromUtilDate() {
-        String sDate1 = "10/05/2022";
+        String sDate1 = "1/09/2004";
         long epoch = 0;
         try {
             Date date = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);

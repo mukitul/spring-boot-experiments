@@ -5,6 +5,7 @@ import com.app.springdataexp.csv.CSVRecordDto;
 import com.app.springdataexp.csv.CSVService;
 import com.app.springdataexp.customerHATEOS.CustomerService;
 import com.app.springdataexp.dateexp.DateService;
+import com.app.springdataexp.enumexp.CategoryType;
 import com.app.springdataexp.enumexp.EnumExpService;
 import com.app.springdataexp.excel.ExcelService;
 import com.app.springdataexp.listexp.StudentService;
@@ -113,6 +114,16 @@ public class UnitTest {
     public void streamTest() {
         //streamExpService.getChildByParentId(6);
         streamExpService.getElementLengthInList();
+    }
+
+    @Test
+    public void otherTest() {
+        Integer a = 2;
+        int b = CategoryType.CATEGORY_B.getCategory();
+        if(a==b){
+            System.out.println("A=B");
+        }
+
     }
 
     @Test
