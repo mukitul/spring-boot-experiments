@@ -50,12 +50,12 @@ public class UnitTest {
 
     @Test
     public void insertTest() {
-        customerService.insertCustomer();
+        //customerService.insertCustomer();
     }
 
     @Test
     public void randomPickTest() {
-        customerService.pickRandomData();
+        //customerService.pickRandomData();
     }
 
     @Test
