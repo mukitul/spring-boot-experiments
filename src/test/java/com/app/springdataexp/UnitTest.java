@@ -1,5 +1,7 @@
 package com.app.springdataexp;
 
+import com.app.springdataexp.appContextAware.SpringExpContext;
+import com.app.springdataexp.appContextAware.SpringExpService;
 import com.app.springdataexp.cornexp.CornExpService;
 import com.app.springdataexp.csv.CSVRecordDto;
 import com.app.springdataexp.csv.CSVService;
@@ -47,6 +49,8 @@ public class UnitTest {
     private ProductService productService;
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private SpringExpService springExpService;
 
     @Test
     public void insertTest() {
@@ -124,7 +128,11 @@ public class UnitTest {
         if(a==b){
             System.out.println("A=B");
         }
+    }
 
+    @Test
+    public void applicationAwareBeanTest() {
+        springExpService.testSpringExp();
     }
 
     @Test
