@@ -82,4 +82,24 @@ public class StudentService {
         }
     }
 
+    public void studentList() {
+        try {
+            List<StudentDetailDto> stdDetailList = dataService.getAllStudentDetail();
+
+            stdDetailList = stdDetailList.stream().filter(item -> {
+                if (Objects.isNull(item)) {
+                    return false;
+                } else if ("Haque".equals(item.getName())) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }).collect(Collectors.toList());
+
+            System.out.println(stdDetailList);
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+    }
+
 }

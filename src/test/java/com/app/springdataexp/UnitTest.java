@@ -97,7 +97,8 @@ public class UnitTest {
         //studentService.showAllStudent();
         //studentService.getStudentListDto();
         //studentService.mapOneListToAnother();
-        studentService.convertListToArray();
+        //studentService.convertListToArray();
+        studentService.studentList();
     }
 
     @Test
