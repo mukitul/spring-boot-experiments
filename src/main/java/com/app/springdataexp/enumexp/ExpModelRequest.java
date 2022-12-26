@@ -6,4 +6,5 @@ import lombok.Data;
 public class ExpModelRequest {
     private CategoryType categoryType;
     private StudentType studentType;
+    private SpeStudentType speStudentType;
 }

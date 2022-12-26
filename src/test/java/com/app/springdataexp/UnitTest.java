@@ -1,6 +1,5 @@
 package com.app.springdataexp;
 
-import com.app.springdataexp.appContextAware.SpringExpContext;
 import com.app.springdataexp.appContextAware.SpringExpService;
 import com.app.springdataexp.cornexp.CornExpService;
 import com.app.springdataexp.csv.CSVRecordDto;
@@ -9,6 +8,8 @@ import com.app.springdataexp.customerHATEOS.CustomerService;
 import com.app.springdataexp.dateexp.DateService;
 import com.app.springdataexp.enumexp.CategoryType;
 import com.app.springdataexp.enumexp.EnumExpService;
+import com.app.springdataexp.enumexp.ExpModelRequest;
+import com.app.springdataexp.enumexp.SpeStudentType;
 import com.app.springdataexp.excel.ExcelService;
 import com.app.springdataexp.listexp.StudentService;
 import com.app.springdataexp.specexp.ProductService;
@@ -72,7 +73,12 @@ public class UnitTest {
 //        for (StudentType studentType : StudentType.values()) {
 //            System.out.println(SpeStudentType.values()[studentType.ordinal()]);
 //        }
-        enumExpService.showData();
+        //enumExpService.showData();
+        ExpModelRequest request = new ExpModelRequest();
+        //request.setSpeStudentType(SpeStudentType.PARTTIMER);
+        //request.setSpeStudentType(SpeStudentType.SPECIAL);
+        request.setSpeStudentType(null);
+        enumExpService.enumConvert(request);
 //        System.out.println(CountryCode.EIGHT_EIGHT_ZERO.getCountryCode());
     }
 
@@ -125,7 +131,7 @@ public class UnitTest {
     public void otherTest() {
         Integer a = 2;
         int b = CategoryType.CATEGORY_B.getCategory();
-        if(a==b){
+        if (a == b) {
             System.out.println("A=B");
         }
     }

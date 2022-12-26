@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -41,5 +42,9 @@ public class EnumExpService {
         EnumData enumData = new EnumData();
         enumData.setStudentType(StudentType.REGULAR);
         System.out.println(enumData.getStudentType().toString());
+    }
+
+    public void enumConvert(ExpModelRequest expModelRequest) {
+        System.out.println(Objects.isNull(expModelRequest.getSpeStudentType()) ? null : expModelRequest.getSpeStudentType().getStudentCategory());
     }
 }
