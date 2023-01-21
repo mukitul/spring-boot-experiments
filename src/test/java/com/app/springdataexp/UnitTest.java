@@ -9,7 +9,6 @@ import com.app.springdataexp.dateexp.DateService;
 import com.app.springdataexp.enumexp.CategoryType;
 import com.app.springdataexp.enumexp.EnumExpService;
 import com.app.springdataexp.enumexp.ExpModelRequest;
-import com.app.springdataexp.enumexp.SpeStudentType;
 import com.app.springdataexp.excel.ExcelService;
 import com.app.springdataexp.listexp.StudentService;
 import com.app.springdataexp.specexp.ProductService;
@@ -169,6 +168,14 @@ public class UnitTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void stringTest() {
+        String testStr = "ADD_OBAOC,ADD_OBAIC,ADD_OBGPA";
+        String[] elements = testStr.split(",");
+        List<String> strList = Arrays.asList(elements);
+        System.out.println(strList);
     }
 
 
