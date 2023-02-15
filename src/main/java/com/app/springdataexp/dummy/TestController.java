@@ -13,6 +13,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 public class TestController {
     @PostMapping("/api-one")
     public List<DummyResponse> getCustomerById(@RequestBody DummyRequest dummyRequest) {
+        System.out.println(dummyRequest);
         return Arrays.asList(
                 new DummyResponse(1, "TITLE-ONE", "TITLE-ONE-LINK"),
                 new DummyResponse(2, "TITLE-TWO", "TITLE-ONE-LINK"),
