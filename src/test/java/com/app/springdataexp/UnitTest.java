@@ -13,6 +13,8 @@ import com.app.springdataexp.excel.ExcelService;
 import com.app.springdataexp.listexp.StudentService;
 import com.app.springdataexp.specexp.ProductService;
 import com.app.springdataexp.streamsexp.StreamExpService;
+import com.app.springdataexp.switchcaseexp.DummyRequestTwo;
+import com.app.springdataexp.switchcaseexp.SwitchCaseExpService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
@@ -51,6 +53,9 @@ public class UnitTest {
     private CustomerService customerService;
     @Autowired
     private SpringExpService springExpService;
+
+    @Autowired
+    private SwitchCaseExpService switchCaseExpService;
 
     @Test
     public void insertTest() {
@@ -172,10 +177,16 @@ public class UnitTest {
 
     @Test
     public void stringTest() {
-        String testStr = "ADD_OBAOC,ADD_OBAIC,ADD_OBGPA";
-        String[] elements = testStr.split(",");
-        List<String> strList = Arrays.asList(elements);
+        String testStr = "ADD_ONE,ADD_TWO,ADD_THREE";
+        List<String> strList = Arrays.asList(testStr.split(","));
         System.out.println(strList);
+    }
+
+    @Test
+    public void testSwitchCase() {
+        DummyRequestTwo dummyRequestTwo = new DummyRequestTwo();
+        dummyRequestTwo.setStudentType(null);
+        switchCaseExpService.switchCaseInJava8(dummyRequestTwo);
     }
 
 
