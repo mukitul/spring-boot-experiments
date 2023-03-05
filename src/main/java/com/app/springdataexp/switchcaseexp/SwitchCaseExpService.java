@@ -2,16 +2,18 @@ package com.app.springdataexp.switchcaseexp;
 
 import org.springframework.stereotype.Service;
 
+import static com.app.springdataexp.enumexp.StudentTypeConstant.*;
+
 @Service
 public class SwitchCaseExpService {
 
     public void switchCaseInJava8(DummyRequestTwo dummyRequestTwo) {
-        switch (dummyRequestTwo.getStudentType()) {
+        switch (dummyRequestTwo.getStringType()) {
             case REGULAR:
-                System.out.println("REGULAR");
-                break;
             case SPECIAL:
-                System.out.println("SPECIAL");
+                throw new RuntimeException("EXCEPTION");
+            case PARTTIMER:
+                System.out.println("PARTTIMER");
                 break;
             default:
                 System.out.println("DEFAULT");

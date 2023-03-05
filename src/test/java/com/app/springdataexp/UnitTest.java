@@ -6,13 +6,10 @@ import com.app.springdataexp.csv.CSVRecordDto;
 import com.app.springdataexp.csv.CSVService;
 import com.app.springdataexp.customerHATEOS.CustomerService;
 import com.app.springdataexp.dateexp.DateService;
-import com.app.springdataexp.enumexp.CategoryType;
-import com.app.springdataexp.enumexp.EnumExpService;
-import com.app.springdataexp.enumexp.ExpModelRequest;
+import com.app.springdataexp.enumexp.*;
 import com.app.springdataexp.excel.ExcelService;
 import com.app.springdataexp.listexp.StudentService;
 import com.app.springdataexp.specexp.ProductService;
-import com.app.springdataexp.streamsexp.StreamExpService;
 import com.app.springdataexp.switchcaseexp.DummyRequestTwo;
 import com.app.springdataexp.switchcaseexp.SwitchCaseExpService;
 import org.apache.logging.log4j.LogManager;
@@ -41,8 +38,6 @@ public class UnitTest {
     private StudentService studentService;
     @Autowired
     private DateService dateService;
-    @Autowired
-    private StreamExpService streamExpService;
     @Autowired
     private EnumExpService enumExpService;
     @Autowired
@@ -126,12 +121,6 @@ public class UnitTest {
     }
 
     @Test
-    public void streamTest() {
-        //streamExpService.getChildByParentId(6);
-        streamExpService.getElementLengthInList();
-    }
-
-    @Test
     public void otherTest() {
         Integer a = 2;
         int b = CategoryType.CATEGORY_B.getCategory();
@@ -185,9 +174,12 @@ public class UnitTest {
     @Test
     public void testSwitchCase() {
         DummyRequestTwo dummyRequestTwo = new DummyRequestTwo();
-        dummyRequestTwo.setStudentType(null);
+        dummyRequestTwo.setStudentType(StudentType.PARTTIMER2);
+        dummyRequestTwo.setStringType(StudentTypeConstant.SPECIAL);
         switchCaseExpService.switchCaseInJava8(dummyRequestTwo);
     }
+
+
 
 
 }

@@ -6,4 +6,5 @@ import lombok.Data;
 @Data
 public class DummyRequestTwo {
     private StudentType studentType;
+    private String stringType;
 }
