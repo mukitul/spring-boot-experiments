@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.app</groupId>
-    <artifactId>spring-data-exp</artifactId>
+    <artifactId>spring-boot-experiments</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-data-exp</name>
-    <description>spring-data-exp</description>
+    <name>spring-boot-experiments</name>
+    <description>A project for doing experiments on spring boot</description>
     <properties>
         <java.version>1.8</java.version>
         <org.projectlombok.version>1.18.2</org.projectlombok.version>
@@ -94,10 +94,6 @@
             <artifactId>poi-ooxml</artifactId>
             <version>3.17</version>
         </dependency>
-        <dependency>
-            <groupId>wsdl4j</groupId>
-            <artifactId>wsdl4j</artifactId>
-        </dependency>
 
         <!--For generating metamodel classes from entity class-->
         <dependency>
@@ -154,24 +150,6 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>2.5.0</version>
-                <executions>
-                    <execution>
-                        <id>xjc</id>
-                        <goals>
-                            <goal>xjc</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <sources>
-                        <source>${project.basedir}/src/main/resources/countries.xsd</source>
-                    </sources>
                 </configuration>
             </plugin>
         </plugins>
