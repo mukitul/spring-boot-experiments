@@ -12,6 +12,7 @@ import com.app.springdataexp.listexp.StudentService;
 import com.app.springdataexp.specexp.ProductService;
 import com.app.springdataexp.switchcaseexp.DummyRequestTwo;
 import com.app.springdataexp.switchcaseexp.SwitchCaseExpService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
@@ -121,6 +122,13 @@ public class UnitTest {
     }
 
     @Test
+    public void enumTest() {
+        ExpModelRequest request = new ExpModelRequest();
+        request.setStudentType(StudentType.REGULAR);
+        enumExpService.enumExpMethod(request);
+    }
+
+    @Test
     public void otherTest() {
         Integer a = 2;
         int b = CategoryType.CATEGORY_B.getCategory();
@@ -166,9 +174,19 @@ public class UnitTest {
 
     @Test
     public void stringTest() {
-        String testStr = "ADD_ONE,ADD_TWO,ADD_THREE";
-        List<String> strList = Arrays.asList(testStr.split(","));
-        System.out.println(strList);
+//        String testStr = "ADD_ONE,ADD_TWO,ADD_THREE";
+//        List<String> strList = Arrays.asList(testStr.split(","));
+//        System.out.println(strList);
+
+        String testStr = " N      1234 ";
+        String[] splitedStr = testStr.trim().split("\\s+");
+        for (int i = 0; i < splitedStr.length; i++) {
+            System.out.println(i + " : " + splitedStr[i]);
+        }
+
+        String input = "123";
+        String lastFourChars = StringUtils.right(input, 4);
+        System.out.println(lastFourChars);
     }
 
     @Test
@@ -178,8 +196,6 @@ public class UnitTest {
         dummyRequestTwo.setStringType(StudentTypeConstant.SPECIAL);
         switchCaseExpService.switchCaseInJava8(dummyRequestTwo);
     }
-
-
 
 
 }

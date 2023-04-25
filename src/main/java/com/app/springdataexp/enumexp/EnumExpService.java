@@ -22,13 +22,21 @@ public class EnumExpService {
             System.out.println("StudentType.REGULAR");
         }
 
-        if (CategoryType.CATEGORY_ONE.equals(expModel.getCategoryType())) {
-            System.out.println("CategoryType.CATEGORY_ONE");
+//        if (expModel.getStudentType().equals(StudentType.REGULAR)) {
+//            System.out.println("StudentType.REGULAR");
+//        }
+
+        if (expModel.getStudentType() == StudentType.REGULAR) {
+            System.out.println("StudentType.REGULAR");
         }
 
-        if (CategoryType.CATEGORY_TWO == expModel.getCategoryType()) {
-            System.out.println("CategoryType.CATEGORY_TWO");
-        }
+//        if (CategoryType.CATEGORY_ONE.equals(expModel.getCategoryType())) {
+//            System.out.println("CategoryType.CATEGORY_ONE");
+//        }
+//
+//        if (CategoryType.CATEGORY_TWO == expModel.getCategoryType()) {
+//            System.out.println("CategoryType.CATEGORY_TWO");
+//        }
         EnumData enumData = new EnumData();
         modelMapper.map(expModel, enumData);
         enumExpRepository.save(enumData);
