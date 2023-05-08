@@ -8,11 +8,13 @@ import javax.validation.constraints.Size;
 
 @Data
 public class ValidationRequestDto {
-    @NotBlank
+    @ValidDayCount
+    private int dayCount;
+    //@NotBlank
     private String name;
-    @Size(max = 2, message = "char limit")
-    @NotNull
-    private String areaName;
-    @NotNull
-    private int count;
+//    @Size(max = 2, message = "char limit")
+//    @NotNull
+//    private String areaName;
+//    @NotNull
+//    private int count;
 }

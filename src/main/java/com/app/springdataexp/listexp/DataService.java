@@ -7,6 +7,9 @@ import java.util.List;
 
 @Component
 public class DataService {
+    public String getConfigValue(String key) {
+        return "7,15,30";
+    }
     public StudentDto getStudentById() {
         StudentDto studentDto = new StudentDto();
         studentDto.setId(1);

@@ -21,6 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -195,6 +199,27 @@ public class UnitTest {
         dummyRequestTwo.setStudentType(StudentType.PARTTIMER2);
         dummyRequestTwo.setStringType(StudentTypeConstant.SPECIAL);
         switchCaseExpService.switchCaseInJava8(dummyRequestTwo);
+    }
+
+
+    public static java.util.Date getFutureDate(java.util.Date fromDate,int day) {
+        return java.sql.Date.from(fromDate.toInstant().plus(day, ChronoUnit.DAYS));
+    }
+
+    @Test
+    public void testDate() {
+        try {
+            String sDate1 = "Apr 21, 2023 15:03:10";
+            Date date = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss").parse(sDate1);
+            Date futureDate = getFutureDate(date,7);
+
+            DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+            String stringDate = df.format(futureDate);
+            System.out.println(stringDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //System.out.println(getFutureDate());
     }
 
 
