@@ -28,8 +28,8 @@ public class ProductSpecification implements Specification<Product> {
             if (queryDto.getProductName() != null) {
                 predicateList.add(criteriaBuilder.equal(root.get(Product_.PRODUCT_NAME), queryDto.getProductName()));
             }
-            if (queryDto.getPrice() != null) {
-                predicateList.add(criteriaBuilder.equal(root.get(Product_.PRICE), queryDto.getPrice()));
+            if (queryDto.getMinPrice() != null) {
+                predicateList.add(criteriaBuilder.equal(root.get(Product_.PRICE), queryDto.getMinPrice()));
             }
             if (queryDto.getProductType() != null) {
                 predicateList.add(criteriaBuilder.equal(root.get(Product_.PRODUCT_TYPE), queryDto.getProductType()));

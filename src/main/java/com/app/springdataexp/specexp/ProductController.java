@@ -19,7 +19,7 @@ public class ProductController {
 
     @RequestMapping(value = "/get-all", method = RequestMethod.POST)
     public ResponseEntity<?> getRequiredDocument(@Valid @RequestBody SearchQueryDto queryDto) {
-        List<Product> response = productService.getAll(queryDto);
+        List<Product> response = productService.getAllWithLambda(queryDto);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

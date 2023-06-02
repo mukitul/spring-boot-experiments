@@ -15,7 +15,7 @@ import java.util.List;
 public class CacheService {
     private final ProductRepository productRepository;
 
-    @PostConstruct
+    //@PostConstruct
     private void populateData() {
         final List<Product> productList = new ArrayList<>();
         if (productRepository.countRecord() <= 0) {
