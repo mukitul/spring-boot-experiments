@@ -12,7 +12,6 @@ import com.app.springdataexp.listexp.StudentService;
 import com.app.springdataexp.specexp.ProductService;
 import com.app.springdataexp.switchcaseexp.DummyRequestTwo;
 import com.app.springdataexp.switchcaseexp.SwitchCaseExpService;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
@@ -21,9 +20,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Date;
@@ -182,15 +182,19 @@ public class UnitTest {
 //        List<String> strList = Arrays.asList(testStr.split(","));
 //        System.out.println(strList);
 
-        String testStr = " N      1234 ";
-        String[] splitedStr = testStr.trim().split("\\s+");
-        for (int i = 0; i < splitedStr.length; i++) {
-            System.out.println(i + " : " + splitedStr[i]);
-        }
+//        String testStr = " N      1234 ";
+//        String[] splitedStr = testStr.trim().split("\\s+");
+//        for (int i = 0; i < splitedStr.length; i++) {
+//            System.out.println(i + " : " + splitedStr[i]);
+//        }
+//
+//        String input = "123";
+//        String lastFourChars = StringUtils.right(input, 4);
+//        System.out.println(lastFourChars);
 
-        String input = "123";
-        String lastFourChars = StringUtils.right(input, 4);
-        System.out.println(lastFourChars);
+        Integer a = 5;
+        Integer b = 7;
+        System.out.println(a.equals(b));
     }
 
     @Test
@@ -202,24 +206,57 @@ public class UnitTest {
     }
 
 
-    public static java.util.Date getFutureDate(java.util.Date fromDate,int day) {
+    public static java.util.Date getFutureDate(java.util.Date fromDate, int day) {
         return java.sql.Date.from(fromDate.toInstant().plus(day, ChronoUnit.DAYS));
     }
 
     @Test
     public void testDate() {
         try {
-            String sDate1 = "Apr 21, 2023 15:03:10";
-            Date date = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss").parse(sDate1);
-            Date futureDate = getFutureDate(date,7);
+            String simExpDate = "Jun 6, 2023 15:03:10";
+            Date simExpDateD = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss").parse(simExpDate);
+            LocalDate simExpLD = toLocalDate(simExpDateD);
 
-            DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-            String stringDate = df.format(futureDate);
-            System.out.println(stringDate);
+            String visaExpDate = "Jun 7, 2023 15:03:10";
+            Date visaExpDateD = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss").parse(visaExpDate);
+            LocalDate visaExpDateLD = toLocalDate(visaExpDateD);
+
+            System.out.println("simActLD: " + simExpLD);
+            System.out.println("visaExpDateLD: " + visaExpDateLD);
+            System.out.println("visaExpDateLD.isAfter(simExpLD): " + visaExpDateLD.isAfter(simExpLD));
+            System.out.println("visaExpDateLD.isBefore(simExpLD): " + visaExpDateLD.isBefore(simExpLD));
+            System.out.println("visaExpDateLD.isEqual(simExpLD): " + visaExpDateLD.isEqual(simExpLD));
+
+            if (!visaExpDateLD.isEqual(simExpLD) && visaExpDateLD.isBefore(simExpLD)) {
+                System.out.println("visa will be expire before sim expires");
+            }
+//            Date futureDate = getFutureDate(date,7);
+//
+//            DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+//            String stringDate = df.format(futureDate);
+//            System.out.println(stringDate);
+
+//            LocalDate localDate = toLocalDate(visaExpDateD);
+//            LocalDate updatedDate = localDate.plusDays(7);
+//            Date res = java.sql.Date.from(updatedDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//            System.out.println(res);
+//            System.out.println(simActDateD.compareTo(res) < 0);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         //System.out.println(getFutureDate());
+    }
+
+    public static LocalDate toLocalDate(java.util.Date dateToConvert) {
+        return sanitize(dateToConvert).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public static java.util.Date sanitize(java.util.Date date) {
+        if (date instanceof java.sql.Date) {
+            return new java.util.Date(date.getTime());
+        } else {
+            return date;
+        }
     }
 
 
