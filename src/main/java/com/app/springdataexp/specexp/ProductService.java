@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,8 +38,8 @@ public class ProductService {
                 if (queryDto.getProductName() != null) {
                     predicateList.add(criteriaBuilder.equal(root.get(Product_.PRODUCT_NAME), queryDto.getProductName()));
                 }
-                if (queryDto.getPrice() != null) {
-                    predicateList.add(criteriaBuilder.equal(root.get(Product_.PRICE), queryDto.getPrice()));
+                if (queryDto.getMinPrice() != null) {
+                    predicateList.add(criteriaBuilder.equal(root.get(Product_.PRICE), queryDto.getMinPrice()));
                 }
                 if (queryDto.getProductType() != null) {
                     predicateList.add(criteriaBuilder.equal(root.get(Product_.PRODUCT_TYPE), queryDto.getProductType()));
@@ -54,17 +51,38 @@ public class ProductService {
 
     private Specification<Product> _findAllExampleWithLambda(SearchQueryDto queryDto) {
         return ((root, query, criteriaBuilder) -> {
-            final List<Predicate> predicateList = new ArrayList<>();
-            if (queryDto.getProductName() != null) {
-                predicateList.add(criteriaBuilder.equal(root.get(Product_.PRODUCT_NAME), queryDto.getProductName()));
-            }
-            if (queryDto.getPrice() != null) {
-                predicateList.add(criteriaBuilder.equal(root.get(Product_.PRICE), queryDto.getPrice()));
-            }
-            if (queryDto.getProductType() != null) {
-                predicateList.add(criteriaBuilder.equal(root.get(Product_.PRODUCT_TYPE), queryDto.getProductType()));
-            }
+            final List<Predicate> predicateList = getPredicateList(queryDto, root, criteriaBuilder);
+
+            final List<Order> orderList = getOrderList(queryDto, root, criteriaBuilder);
+            query.orderBy(orderList);
+
             return criteriaBuilder.and(predicateList.toArray(new Predicate[0]));
         });
     }
+
+    private List<Predicate> getPredicateList(SearchQueryDto queryDto, Root<Product> root, CriteriaBuilder criteriaBuilder) {
+        final List<Predicate> predicateList = new ArrayList<>();
+        if (queryDto.getProductType() != null) {
+            predicateList.add(criteriaBuilder.equal(root.get(Product_.PRODUCT_TYPE), queryDto.getProductType()));
+        }
+        if (queryDto.getMinPrice() != null) {
+            predicateList.add(criteriaBuilder.ge(root.get(Product_.PRICE), queryDto.getMinPrice()));
+        }
+        if (queryDto.getMaxPrice() != null) {
+            predicateList.add(criteriaBuilder.le(root.get(Product_.PRICE), queryDto.getMaxPrice()));
+        }
+        return predicateList;
+    }
+
+    private List<Order> getOrderList(SearchQueryDto queryDto, Root<Product> root, CriteriaBuilder criteriaBuilder) {
+        final List<Order> orderList = new ArrayList<>();
+        if (SearchQueryDto.SortedOrder.DESC.name().equals(queryDto.getSortedOrder())) {
+            orderList.add(criteriaBuilder.desc(root.get(Product_.PRICE)));
+        } else {
+            orderList.add(criteriaBuilder.asc(root.get(Product_.PRICE)));
+        }
+        return orderList;
+    }
+
+
 }

@@ -10,6 +10,8 @@ import com.app.springdataexp.enumexp.*;
 import com.app.springdataexp.excel.ExcelService;
 import com.app.springdataexp.listexp.StudentService;
 import com.app.springdataexp.specexp.ProductService;
+import com.app.springdataexp.specexp.ProductType;
+import com.app.springdataexp.specexp.SearchQueryDto;
 import com.app.springdataexp.switchcaseexp.DummyRequestTwo;
 import com.app.springdataexp.switchcaseexp.SwitchCaseExpService;
 import org.apache.logging.log4j.LogManager;
@@ -245,6 +247,16 @@ public class UnitTest {
             e.printStackTrace();
         }
         //System.out.println(getFutureDate());
+    }
+
+    @Test
+    public void testSpecification() {
+        SearchQueryDto queryDto = new SearchQueryDto();
+        queryDto.setProductType(ProductType.HOME_DECOR);
+        queryDto.setMinPrice(200.0);
+        queryDto.setMaxPrice(500.0);
+        //queryDto.setSortedOrder(SearchQueryDto.SortedOrder.DESC.name());
+        productService.getAllWithLambda(queryDto);
     }
 
     public static LocalDate toLocalDate(java.util.Date dateToConvert) {

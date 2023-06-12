@@ -1,8 +1,9 @@
 package com.app.springdataexp.specexp;
 
 public enum ProductType {
-    FRAGILE("Fragile"),
-    NONFRAZILE("Non-Frazile");
+    ELECTRONICS("ELECTRONICS"),
+    FASHION("FASHION"),
+    HOME_DECOR("HOME_DECOR");
 
     private final String productType;
 
