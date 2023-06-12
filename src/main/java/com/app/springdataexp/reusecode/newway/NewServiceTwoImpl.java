@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 public class NewServiceTwoImpl implements NewServiceTwo, CommonInterface {
     @Override
     public void calculateLengthOfText(LogDto logDto) {
-        execute(logDto, () -> {
-            int textLength = logDto.getText().length();
-            System.out.println("TEXT_LEN: " + textLength);
-        });
+        executeBusinessLogic(logDto, "9050", "Exception Occurred",
+                () -> {
+                    int textLength = logDto.getText().length();
+                    System.out.println("TEXT_LEN: " + textLength);
+                });
     }
 }

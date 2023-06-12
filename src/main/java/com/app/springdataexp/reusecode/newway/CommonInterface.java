@@ -7,19 +7,18 @@ import com.app.springdataexp.reusecode.Status;
 import java.util.Date;
 
 public interface CommonInterface {
-    default void execute(LogDto logDto, BusinessLogic businessLogic) {
+    default void executeBusinessLogic(LogDto logDto, String defaultErrorCode, String exceptionMessage, BusinessLogic businessLogic) {
         Date requestTime = new Date();
         ResponseDto responseDto = new ResponseDto();
-        responseDto.setStatus(Status.SUCCESSFUL);
         responseDto.setStatus(Status.SUCCESSFUL);
         responseDto.setApiRequestTime(requestTime);
         try {
             businessLogic.execute();
         } catch (Exception ex) {
             responseDto.setStatus(Status.FAILED);
-            responseDto.setErrorCode("9050");
+            responseDto.setErrorCode(defaultErrorCode);
             responseDto.setErrorDetails(ex.getMessage());
-            throw new RuntimeException("lfs");
+            throw new RuntimeException(exceptionMessage);
         } finally {
             responseDto.setApiResponseTime(new Date());
             logDto.persist(responseDto);

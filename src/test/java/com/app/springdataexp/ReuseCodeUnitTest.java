@@ -33,7 +33,9 @@ public class ReuseCodeUnitTest {
 
     @Test
     public void randomPickTest() {
-        //customerService.pickRandomData();
+        LogDto logDto = new LogDto();
+        logDto.setText(null);
+        newServiceTwo.calculateLengthOfText(logDto);
     }
 
 }
