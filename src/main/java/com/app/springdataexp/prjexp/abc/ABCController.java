@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/abc")
 public class ABCController {
     private final QcReqProcessor processor;
+    private final ABCReqHandlerService abcReqHandlerService;
 
     @PostMapping("/api")
     public String anyReq(@RequestBody ABCReqDto abcReqDto) {
-        processor.process(abcReqDto, new ABCReqHandlerService());
+        processor.process(abcReqDto, abcReqHandlerService);
         return "DONE";
     }
 }
